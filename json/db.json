@@ -20,6 +20,20 @@
       "tradePointId": 2,
       "floor": 2,
       "typeId": 3
+    },
+    {
+      "id": 4,
+      "serialNumber": "DF1246",
+      "tradePointId": 2,
+      "floor": 2,
+      "typeId": 3
+    },
+    {
+      "id": 5,
+      "serialNumber": "DF1246",
+      "tradePointId": 2,
+      "floor": 2,
+      "typeId": 3
     }
   ],
   "tradePoints": [

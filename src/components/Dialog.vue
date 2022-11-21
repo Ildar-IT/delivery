@@ -7,9 +7,9 @@
           <span></span>
         </div>
         <div class="dialog__title">
-          <h3>Время работы</h3>
+          <h2>Время работы</h2>
         </div>
-        <span v-if="openUntilTime">Открыто до {{ openUntilTime }}</span>
+        <span class="dialog-content__today" v-if="openUntilTime">Открыто до {{ openUntilTime }}</span>
         <span v-else>Сегодня выходной</span>
         <div class="dialog__divider"></div>
         <div class="dialog__dates">
@@ -105,10 +105,10 @@ export default {
 }
 .dialog-content {
   position: relative;
-  border: 2px solid #067dcc;
+  border: 1px solid  rgba(192, 156, 94, 0.95);
   background-color: white;
   border-radius: 20px;
-  padding: 15px;
+  padding: 25px;
   width: 100%;
 
 }
@@ -117,17 +117,22 @@ export default {
   justify-content: center;
 }
 
-.dialog__title > h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
+.dialog__title > h2 {
+  font-size: 23px;
+  margin-bottom: 20px;
 }
 
 .dialog span {
   color: #6b6767;
 }
 
+.dialog-content__today {
+  display: block;
+  text-align: center;
+}
+
 .dialog__divider {
-  background-color: #6b6767;
+  background-color: rgba(192, 156, 94, 0.95);
   height: 2px;
   margin: 10px 0;
 }
@@ -150,41 +155,55 @@ export default {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: -10px;
-  width: 5px;
-  height: 5px;
+  left: -14px;
+  width: 6px;
+  height: 6px;
   border-radius: 100%;
-  background-color: #071aa6;
+  background: rgba(192, 156, 94, 0.95);
 }
 
 .dialog__close {
   cursor: pointer;
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   right: 15px;
-  top: 19px;
+  top: 26px;
+  transition: 0.2s ease-in-out;
 }
 
 .dialog__close:hover {
-  opacity: 0.7;
-  transition: 0.2s ease-in-out;
+  opacity: 0.8;
 }
 
 .dialog__close span {
   position: absolute;
   display: block;
-  width: 15px;
+  width: 100%;
   height: 1px;
-  background-color: black;
+  background-color: rgba(20, 14, 20, 0.7);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .dialog__close span:first-child {
-
   transform: translate(-50%, -50%) rotate(135deg);
 
+}
+
+@media (min-width: 960px) {
+  .dialog__title > h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  .dialog__date--active span:first-child::before {
+    left: -14px;
+    width: 7px;
+    height: 7px;
+  }
+  .dialog__close {
+    top: 29px;
+  }
 }
 </style>

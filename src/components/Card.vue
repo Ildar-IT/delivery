@@ -1,32 +1,34 @@
 <template>
   <div v-if="machine" class="card">
     <div class="card__content">
-      <h2>#{{machine.serialNumber}}</h2>
-      <div class="card__content__items">
+      <div>
+        <h2>#{{ machine.serialNumber }}</h2>
+        <div class="card__content__items">
         <span v-for="el in machine.machineTypes"
               :key="el"
               :style="{color: randomColor()}"
         >
-          {{getRuTeg(el)}}
+          {{ getRuTeg(el) }}
         </span>
-      </div>
-      <h4 v-if="machine.tradePoints">
-        {{machine.tradePoints.location.address}}
-      </h4>
-      <h4 v-else>
-        Локация не найдена!
-      </h4>
-      <span>
-        Этаж: {{machine.floor}}
+        </div>
+        <h4 v-if="machine.tradePoints">
+          {{ machine.tradePoints.location.address }}
+        </h4>
+        <h4 v-else>
+          Локация не найдена!
+        </h4>
+        <span>
+        Этаж: {{ machine.floor }}
       </span>
+      </div>
       <button class="card__content-button" @click="machine.dialogShow = true">
         Время работы
       </button>
     </div>
     <MapTGis :id="machine.id"
-               :center="[machine.tradePoints.location.latitude, machine.tradePoints.location.longitude]"
-               :marker="[machine.tradePoints.location.latitude, machine.tradePoints.location.longitude]"
-               :zoom="14"/>
+             :center="[machine.tradePoints.location.latitude, machine.tradePoints.location.longitude]"
+             :marker="[machine.tradePoints.location.latitude, machine.tradePoints.location.longitude]"
+             :zoom="14"/>
     <Dialog v-model:show="machine.dialogShow" :dates="machine.tradePoints.workingTime"/>
   </div>
 </template>
@@ -34,6 +36,7 @@
 <script>
 import Dialog from "@/components/Dialog";
 import MapTGis from "@/components/MapTGis";
+
 export default {
   name: "Card",
   props: {
@@ -47,7 +50,11 @@ export default {
   },
   methods: {
     randomColor() {
-      return '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+
+      return `rgba(${this.getRandomArbitrary(1, 20)}0, ${this.getRandomArbitrary(1, 20)}0, 94, 0.75`;
+    },
+    getRandomArbitrary(min, max) {
+      return Math.round((Math.random() * (max - min) + min));
     },
     getRuTeg(name) {
       switch (name) {
@@ -74,18 +81,21 @@ export default {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  border: 1px solid #6b6767;
-  padding: 10px;
+  padding: 15px;
   border-radius: 15px;
   margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
 }
+
 .card__content {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   padding-right: 10px;
 }
-.card__content > h2 {
+
+.card__content > div > h2 {
   margin-bottom: 15px;
 }
 
@@ -96,32 +106,35 @@ export default {
   flex-wrap: wrap;
   margin-bottom: 10px;
 }
+
 .card__content__items span {
-  border: 1px solid #6b6767;
+  border: 1px solid rgba(0, 0, 0, 0.6);
   padding: 5px;
   color: #6b6767;
   border-radius: 7px;
 }
-.card__content > h4 {
+
+.card__content > div > h4 {
   margin-bottom: 2px;
 }
-.card__content > span {
-  margin-bottom: 20px;
+
+.card__content > div {
+  margin-bottom: 10px;
 }
 
 .card__content-button {
   width: 150px;
-  padding: 5px 0;
+  padding: 7px 0;
   border-radius: 10px;
   background-color: transparent;
-  color: #067dcc;
-  border: 1px solid #071aa6;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.6);
 }
 
-.card__content-button:active {
-  color: black;
-  border: 1px solid black;
+.card__content-button:hover {
+  color: #fff;
+  background: rgba(192, 156, 94, 0.95);
+  border: 1px solid transparent;
 }
 
 
@@ -130,17 +143,21 @@ export default {
     width: 50%;
   }
 }
+
 @media (min-width: 960px) {
+  .card__content > div {
+    margin-bottom: 15px;
+  }
 
   .card {
     padding: 20px;
   }
+
   .card__content-button {
     padding: 10px 0;
     width: 180px;
   }
 }
-
 
 
 </style>

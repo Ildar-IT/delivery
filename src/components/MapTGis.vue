@@ -51,14 +51,20 @@ export default {
   margin-top: 20px;
   width: 100%;
   height: 200px;
-  border-radius: 20px;
+  border-radius: 15px;
 }
+
 
 @media (min-width: 700px) {
   .map-tgis {
     margin-top: 0;
     width: 50%;
-    height: 300px;
+    height: 180px;
+  }
+}
+@media (min-width: 960px) {
+  .map-tgis {
+    height: 220px;
   }
 }
 </style>

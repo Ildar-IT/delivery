@@ -34,14 +34,16 @@ body {
   box-sizing: border-box;
   min-width: 360px;
   cursor: default;
-
+  background-color: #f7f6f5;
+  font-family: BlissPro, sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 14px;
   line-height: 150%;
   padding: 0;
   margin: 0;
-
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 /* Работает в Chrome, Edge и Safari */
@@ -50,43 +52,42 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: #6B676734;
+  background: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #6b6767;
-  border-radius: 20px;
-  border: 3px solid #6B676734;
+  background-color: transparent;
+  border: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
+  font-family: BlissPro, sans-serif;
+}
+h1, h2 {
+  color: rgba(196, 156, 94, 0.95);
 }
 
-h4 {
-  color: #071aa6;
+h4, h3 {
+  font-size: 16px;
+  color: rgba(20, 14, 20, 0.7);
 }
 
-h3, span {
-  color: #067dcc;
+span {
+  color: #757575;
 }
 
 button {
   font-size: 15px;
   cursor: pointer;
-
-}
-
-button:hover {
-  opacity: 0.7;
   transition: 0.2s ease-in-out;
+  opacity: 1;
+}
+textarea:focus, input:focus{
+  outline: none;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  overflow: hidden;
-}
 
 p {
   margin-bottom: 0;
@@ -95,7 +96,7 @@ p {
 .layout {
   width: 100%;
   height: 100vh;
-  padding: 16px;
+  padding: 0 16px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -108,6 +109,10 @@ p {
   }
   button {
     font-size: 19px;
+  }
+  h4, h3 {
+    font-size: 20px;
+
   }
 }
 

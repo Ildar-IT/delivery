@@ -2,26 +2,26 @@
   <div class="main">
     <div class="main__header">
       <h1>Список:</h1>
-      <FindInput v-model="findText"/>
+      <SearchInput v-model="findText"/>
     </div>
     <div class="main__list">
       <Card v-if="filterItems && filterItems.length !== 0"
             v-for="item in filterItems" :key="item.id"
             :machine="item"/>
-      <h3 v-else>Список пуст!</h3>
+      <h2 v-else>Список пуст!</h2>
     </div>
   </div>
 </template>
 
 <script>
 import Card from '@/components/Card'
-import FindInput from "@/components/FindInput";
+import SearchInput from "@/components/SearchInput";
 
 export default {
   name: "Main",
   components: {
     Card,
-    FindInput
+    SearchInput
   },
   data() {
     return {
@@ -57,9 +57,12 @@ export default {
 }
 
 .main__header {
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 36px;
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 .main__header > h1{
@@ -69,7 +72,10 @@ export default {
 
 .main__list {
   overflow-y: scroll;
-  height: 100%;
-  padding-bottom: 40px;
+  max-height: calc(100vh - 86px);
+
+}
+.main__list > h2 {
+  text-align: center;
 }
 </style>
